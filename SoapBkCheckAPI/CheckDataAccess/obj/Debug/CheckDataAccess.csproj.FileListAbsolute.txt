@@ -1,0 +1,11 @@
+D:\JAVA\SoapBkApi\SoapBkCheckAPI\CheckDataAccess\bin\Debug\CheckDataAccess.dll.config
+D:\JAVA\SoapBkApi\SoapBkCheckAPI\CheckDataAccess\bin\Debug\CheckDataAccess.dll
+D:\JAVA\SoapBkApi\SoapBkCheckAPI\CheckDataAccess\bin\Debug\CheckDataAccess.pdb
+D:\JAVA\SoapBkApi\SoapBkCheckAPI\CheckDataAccess\bin\Debug\EntityFramework.dll
+D:\JAVA\SoapBkApi\SoapBkCheckAPI\CheckDataAccess\bin\Debug\EntityFramework.SqlServer.dll
+D:\JAVA\SoapBkApi\SoapBkCheckAPI\CheckDataAccess\bin\Debug\EntityFramework.xml
+D:\JAVA\SoapBkApi\SoapBkCheckAPI\CheckDataAccess\bin\Debug\EntityFramework.SqlServer.xml
+D:\JAVA\SoapBkApi\SoapBkCheckAPI\CheckDataAccess\obj\Debug\CheckDataAccess.csprojResolveAssemblyReference.cache
+D:\JAVA\SoapBkApi\SoapBkCheckAPI\CheckDataAccess\obj\Debug\CheckDataAccess.csproj.CoreCompileInputs.cache
+D:\JAVA\SoapBkApi\SoapBkCheckAPI\CheckDataAccess\obj\Debug\CheckDataAccess.dll
+D:\JAVA\SoapBkApi\SoapBkCheckAPI\CheckDataAccess\obj\Debug\CheckDataAccess.pdb

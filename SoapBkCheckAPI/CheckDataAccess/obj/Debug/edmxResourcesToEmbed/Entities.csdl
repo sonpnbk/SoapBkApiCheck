@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SoapbkCheckModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Catalog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Product_Catalog" FromRole="Catalog" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="CommentId" />
+    </Key>
+    <Property Name="CommentId" Type="Guid" Nullable="false" />
+    <Property Name="ProductId" Type="Guid" />
+    <Property Name="UserId" Type="Guid" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Comment_Product" FromRole="Comment" ToRole="Product" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Comment_User" FromRole="Comment" ToRole="User" />
+  </EntityType>
+  <EntityType Name="History">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="UserId" Type="Guid" />
+    <Property Name="ProductId" Type="Guid" />
+    <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="User" Relationship="Self.FK_History_User" FromRole="History" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Price">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="ProductId" Type="Guid" />
+    <Property Name="Price1" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Store" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="StoreAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Price_Product" FromRole="Price" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="Guid" Nullable="false" />
+    <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Nation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Manafacturer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ManafacturerAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ManafacturerPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ManafacturerWeb" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CatalogId" Type="Guid" />
+    <Property Name="Barcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Catalog" Relationship="Self.FK_Product_Catalog" FromRole="Product" ToRole="Catalog" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_Product" FromRole="Product" ToRole="Comment" />
+    <NavigationProperty Name="Prices" Relationship="Self.FK_Price_Product" FromRole="Product" ToRole="Price" />
+    <NavigationProperty Name="Votes" Relationship="Self.FK_Vote_Product" FromRole="Product" ToRole="Vote" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Guid" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_User" FromRole="User" ToRole="Comment" />
+    <NavigationProperty Name="Histories" Relationship="Self.FK_History_User" FromRole="User" ToRole="History" />
+    <NavigationProperty Name="Votes" Relationship="Self.FK_Vote_User" FromRole="User" ToRole="Vote" />
+  </EntityType>
+  <EntityType Name="Vote">
+    <Key>
+      <PropertyRef Name="VoteId" />
+    </Key>
+    <Property Name="VoteId" Type="Guid" Nullable="false" />
+    <Property Name="UserId" Type="Guid" />
+    <Property Name="ProductId" Type="Guid" />
+    <Property Name="Value" Type="Int32" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Vote_Product" FromRole="Vote" ToRole="Product" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Vote_User" FromRole="Vote" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_Product_Catalog">
+    <End Role="Catalog" Type="Self.Catalog" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Catalog">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CatalogId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_History_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="History" Type="Self.History" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="History">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Price_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="Price" Type="Self.Price" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="Price">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vote_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="Vote" Type="Self.Vote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="Vote">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vote_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Vote" Type="Self.Vote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Vote">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SoapbkCheckEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Catalogs" EntityType="Self.Catalog" />
+    <EntitySet Name="Comments" EntityType="Self.Comment" />
+    <EntitySet Name="Histories" EntityType="Self.History" />
+    <EntitySet Name="Prices" EntityType="Self.Price" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="Votes" EntityType="Self.Vote" />
+    <AssociationSet Name="FK_Product_Catalog" Association="Self.FK_Product_Catalog">
+      <End Role="Catalog" EntitySet="Catalogs" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_Product" Association="Self.FK_Comment_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_User" Association="Self.FK_Comment_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_History_User" Association="Self.FK_History_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="History" EntitySet="Histories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Price_Product" Association="Self.FK_Price_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Price" EntitySet="Prices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vote_Product" Association="Self.FK_Vote_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Vote" EntitySet="Votes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vote_User" Association="Self.FK_Vote_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Vote" EntitySet="Votes" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

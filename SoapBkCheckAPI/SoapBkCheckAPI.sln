@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2009
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoapBkCheckAPI", "SoapBkCheckAPI\SoapBkCheckAPI.csproj", "{51E0F487-C513-4D5B-9AB2-E4F7FA523CBE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SCheckDataAccess", "SCheckDataAccess\SCheckDataAccess.csproj", "{2EADBF25-3D15-41E2-B30E-565B4D4658CD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{51E0F487-C513-4D5B-9AB2-E4F7FA523CBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51E0F487-C513-4D5B-9AB2-E4F7FA523CBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51E0F487-C513-4D5B-9AB2-E4F7FA523CBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51E0F487-C513-4D5B-9AB2-E4F7FA523CBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EADBF25-3D15-41E2-B30E-565B4D4658CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EADBF25-3D15-41E2-B30E-565B4D4658CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EADBF25-3D15-41E2-B30E-565B4D4658CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EADBF25-3D15-41E2-B30E-565B4D4658CD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5E8EE5B8-1AA3-4C5A-A17A-D92CB794C48C}
+	EndGlobalSection
+EndGlobal
